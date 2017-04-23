@@ -4,6 +4,7 @@
   "description": "demo application for react and redux",
   "main": "index.js",
   "scripts": {
+    "start": "node ./server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/ZsoltBerki/reactDemo#readme",
   "dependencies": {
+    "express": "^4.15.2",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
