@@ -3,7 +3,9 @@ const path = require('path');
 const conf = {
   entry: "./app/components/Main.js",
   output: {
-    filename: "public/bundle.js"
+    path: "/",
+    filename: 'app.js',
+    publicPath: '/assets/'
   },
   module: {
     rules: [

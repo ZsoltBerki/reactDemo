@@ -1,6 +1,19 @@
 const path = require('path');
-var express = require('express');
-var app = express();
+const express = require('express');
+const config = require('./webpack.config');
+const webpack = require('webpack');
+const compiler = webpack(config);
+const webpackMiddleware = require("webpack-dev-middleware");
+
+const app = express();
+
+app.use(webpackMiddleware(compiler, {
+  noInfo: false,
+  publicPath: config.output.publicPath,
+  stats: {
+    colors: true
+  }
+}));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, './public/index.html'));
