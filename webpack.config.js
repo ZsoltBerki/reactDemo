@@ -1,7 +1,7 @@
 const path = require('path');
 
 const conf = {
-  entry: "./app/components/Main.js",
+  entry: "./app/Main.js",
   output: {
     path: "/",
     filename: 'app.js',
@@ -15,7 +15,8 @@ const conf = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['react', 'es2015']
+            presets: ['es2015', 'react'],
+            plugins: ['transform-object-rest-spread']
           }
         }
       }
