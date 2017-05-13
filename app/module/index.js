@@ -2,34 +2,25 @@ import { createStore } from 'redux'
 import { exampleData } from './exampleData';
 
 const initialState = {
-  isFetching: false,
-  animals: [],
-  selectedAnimal: {name: 'Duck'}
+  animals: exampleData,
+  selectedAnimal: null,
+  nameFilter: ''
 };
 
-const ANIMALS_REQUEST = 'ANIMALS_REQUEST';
-const LOAD_ANIMALS = 'LOAD_ANIMALS';
 const SELECT_ANIMAL = 'SELECT_ANIMAL';
-const DELETE_SELECTION = 'DELETE_SELECTION';
+const SET_ACTIVE_ANIMAL = 'SET_ACTIVE_ANIMAL';
+const CHANGE_NAME_FILTER = 'CHANGE_NAME_FILTER';
 
 const ACTION_HANDLERS = {
-  [ANIMALS_REQUEST]: (state) => ({
-    ...state,
-    isFetching: true
-  }),
-  [LOAD_ANIMALS]: (state, {payload}) => ({
-    ...state,
-    isFetching: false,
-    animals: payload
-  }),
   [SELECT_ANIMAL]: (state, {payload}) => ({
     ...state,
-      selectedAnimal: payload
+    selectedAnimal: payload,
+    nameFilter: '',
   }),
-  [DELETE_SELECTION]: (state) => ({
+  [CHANGE_NAME_FILTER]: (state, {payload}) => ({
     ...state,
-    selectedAnimal: {}
-  }),
+    nameFilter: payload
+  })
 };
 
 export const reducer = (state = initialState, action) => {
@@ -41,8 +32,8 @@ const createAction = type => (...args) => ({type: type, payload: (args => args)(
 
 export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-export const selectAnimal = animal => createAction(SELECT_ANIMAL)(animal);
-
-
-
+export const API = {
+  selectAnimal: animal => createAction(SELECT_ANIMAL)(animal),
+  setNameFilter: value => createAction(CHANGE_NAME_FILTER)(value)
+};
 
