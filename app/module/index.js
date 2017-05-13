@@ -24,7 +24,7 @@ const ACTION_HANDLERS = {
   }),
   [SELECT_ANIMAL]: (state, {payload}) => ({
     ...state,
-    selectedAnimal: payload
+      selectedAnimal: payload
   }),
   [DELETE_SELECTION]: (state) => ({
     ...state,
@@ -39,9 +39,9 @@ export const reducer = (state = initialState, action) => {
 
 const createAction = type => (...args) => ({type: type, payload: (args => args)(...args)});
 
-const store = createStore(reducer);
+export const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-export const selectAnimal = animal => store.dispatch(createAction(SELECT_ANIMAL)(animal));
+export const selectAnimal = animal => createAction(SELECT_ANIMAL)(animal);
 
 
 
